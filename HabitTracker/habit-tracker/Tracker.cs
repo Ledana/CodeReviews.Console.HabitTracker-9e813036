@@ -64,7 +64,7 @@ namespace habit_tracker
             connection.Open();
 
             var checkCmd = connection.CreateCommand();
-            checkCmd.CommandText = $"SELECT EXISTS(SELECT 1 FROM drinking_water WHERE Id = '{recordId}')";
+            checkCmd.CommandText = $"SELECT EXISTS(SELECT 1 FROM habits WHERE Id = '{recordId}')";
             int checkQuery = Convert.ToInt32(checkCmd.ExecuteScalar());
 
             if (checkQuery == 0)
@@ -73,13 +73,13 @@ namespace habit_tracker
                 connection.Close();
                 Update();
             }
+            string title = GetTitleInput("Please put the name of the habit");
             string date = GetDateInput();
-
-            int quantity = GetNumberInput("\n\nPlease insert number of glasses or other measure of your choice (no decimals allowed)\n\n");
-
+            string unit = GetUnitInput("Please put the unit");
+            int quantity = GetNumberInput("\n\nPlease insert number of units (no decimals allowed)\n\n");
 
             var tableCmd = connection.CreateCommand();
-            tableCmd.CommandText = $"UPDATE drinking_water SET Date = '{date}', Quantity = '{quantity}' WHERE Id = '{recordId}'";
+            tableCmd.CommandText = $"UPDATE habits SET Name = '{title}', Date = '{date}', Quantity = '{quantity}', Unit = '{unit}' WHERE Id = '{recordId}'";
 
             tableCmd.ExecuteNonQuery();
             connection.Close();
@@ -90,12 +90,12 @@ namespace habit_tracker
             //Console.Clear();
             GetAllRecords();
 
-            var recordId = GetNumberInput("\n\nPlease type the Id of the record you want to delete or type 0 to retun to main menu. \n\n");
+            var recordId = GetNumberInput("\n\nPlease type the Id of the record you want to delete or type 0 to return to main menu. \n\n");
 
             using var connection = new SqliteConnection(connectionString);
             connection.Open();
             var tableCmd = connection.CreateCommand();
-            tableCmd.CommandText = $"DELETE FROM drinking_water WHERE Id = '{recordId}'";
+            tableCmd.CommandText = $"DELETE FROM habits WHERE Id = '{recordId}'";
 
             int rowCount = tableCmd.ExecuteNonQuery();
 
@@ -116,8 +116,8 @@ namespace habit_tracker
             using var connection = new SqliteConnection(connectionString);
             connection.Open();
             var tableCmd = connection.CreateCommand();
-            tableCmd.CommandText = $"SELECT * FROM drinking_water";
-            List<DrinkingWater> tableData = [];
+            tableCmd.CommandText = $"SELECT * FROM habits";
+            List<Habit> tableData = [];
 
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
@@ -126,11 +126,13 @@ namespace habit_tracker
                 while (reader.Read())
                 {
                     tableData.Add(
-                        new DrinkingWater
+                        new Habit
                         {
                             Id = reader.GetInt32(0),
-                            Date = DateTime.ParseExact(reader.GetString(1), "dd-MM-yy", new CultureInfo("en-US")),
-                            Quantity = reader.GetInt32(2)
+                            Name = reader.GetString(1),
+                            Date = DateTime.ParseExact(reader.GetString(2), "dd-MM-yy", new CultureInfo("en-US")),
+                            Quantity = reader.GetInt32(3),
+                            Unit = reader.GetString(4)
                         }
                     );
                 }
@@ -144,25 +146,38 @@ namespace habit_tracker
             Console.WriteLine("-------------------------------\n");
             foreach (var item in tableData)
             {
-                Console.WriteLine($"Id: {item.Id} | Date: {item.Date.ToString("dd-MM-yy")} | Quantity: {item.Quantity}");
+                Console.WriteLine($"Id: {item.Id} | Name: {item.Name} | Date: {item.Date.ToString("dd-MM-yy")} | Quantity: {item.Quantity} | Unit: {item.Unit}");
             }
             Console.WriteLine("-------------------------------\n");
         }
 
         private static void Insert()
         {
+            string title = GetTitleInput("Please put the name of the habit");
             string date = GetDateInput();
-
-            int quantity = GetNumberInput("\n\nPlease insert number of glasses or other measure of your choice (no decimals allowed)\n\n");
-
+            string unit = GetUnitInput("Please put the unit");
+            int quantity = GetNumberInput("\n\nPlease insert number of units (no decimals allowed)\n\n");
+            
             using var connection = new SqliteConnection(connectionString);
             connection.Open();
             var tableCmd = connection.CreateCommand();
-            tableCmd.CommandText = $"INSERT INTO drinking_water(date, quantity) VALUES('{date}', {quantity})";
+            tableCmd.CommandText = $"INSERT INTO habits(Name, Date, Quantity, Unit) VALUES('{title}', '{date}', {quantity}, '{unit}')";
             tableCmd.ExecuteNonQuery();
             connection.Close();
+            //GetUserInput();
         }
 
+        public static string GetTitleInput(string message)
+        {
+            Console.WriteLine(message);
+
+            return Console.ReadLine();
+        }
+        public static string GetUnitInput(string message)
+        {
+            Console.WriteLine(message);
+            return Console.ReadLine();
+        }
         public static int GetNumberInput(string message)
         {
             Console.WriteLine(message);
