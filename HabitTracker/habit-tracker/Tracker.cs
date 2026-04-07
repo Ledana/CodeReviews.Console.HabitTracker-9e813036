@@ -163,7 +163,7 @@ namespace habit_tracker
             connection.Close();
         }
 
-        internal static int GetNumberInput(string message)
+        public static int GetNumberInput(string message)
         {
             Console.WriteLine(message);
 
@@ -179,7 +179,7 @@ namespace habit_tracker
             return finalInput;
         }
 
-        internal static string GetDateInput()
+        public static string GetDateInput()
         {
             Console.WriteLine("\n\nPlease insert the date: (Format: dd-mm-yy). Type 0 to return to main menu.\n\n");
 
