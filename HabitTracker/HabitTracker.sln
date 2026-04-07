@@ -1,8 +1,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.5.2.0
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11626.88 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "habit-tracker", "habit-tracker\habit-tracker.csproj", "{DA59E61D-A20F-FC70-AC90-B811B3C0CDE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HabitTrackerTests", "..\HabitTrackerTests\HabitTrackerTests.csproj", "{B26574C5-1320-FF7C-A05F-1C2BEA24791C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,6 +16,10 @@ Global
 		{DA59E61D-A20F-FC70-AC90-B811B3C0CDE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA59E61D-A20F-FC70-AC90-B811B3C0CDE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA59E61D-A20F-FC70-AC90-B811B3C0CDE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B26574C5-1320-FF7C-A05F-1C2BEA24791C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B26574C5-1320-FF7C-A05F-1C2BEA24791C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B26574C5-1320-FF7C-A05F-1C2BEA24791C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B26574C5-1320-FF7C-A05F-1C2BEA24791C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

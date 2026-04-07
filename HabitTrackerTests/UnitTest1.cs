@@ -8,9 +8,9 @@
         }
 
         [Test]
-        public void Test1()
+        public void InputtingValidNumber_WhenGetNumberInputIsCalled_ReturnsTheNumber()
         {
-            Assert.Pass();
+            
         }
     }
 }

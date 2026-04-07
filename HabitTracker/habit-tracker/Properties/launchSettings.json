@@ -2,7 +2,7 @@
   "profiles": {
     "habit-tracker": {
       "commandName": "Project",
-      "workingDirectory": "C:\\Users\\ledan\\OneDrive\\Desktop\\Ledana\\HabitTracker"
+      "workingDirectory": "C:\\Users\\ledan\\OneDrive\\Desktop\\Ledana\\CodeReviews.Console.HabitTracker-9e813036\\HabitTracker\\habit-tracker"
     }
   }
 }
