@@ -4,6 +4,8 @@ VisualStudioVersion = 18.4.11626.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "habit-tracker", "habit-tracker\habit-tracker.csproj", "{DA59E61D-A20F-FC70-AC90-B811B3C0CDE5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "habitTracker.Ledana", "habitTracker.Ledana", "{4E6C7F27-366F-4BB1-9006-8CFE7C644F4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DA59E61D-A20F-FC70-AC90-B811B3C0CDE5} = {4E6C7F27-366F-4BB1-9006-8CFE7C644F4D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {780DAD26-B40B-462E-8AB7-5AF82154D716}
