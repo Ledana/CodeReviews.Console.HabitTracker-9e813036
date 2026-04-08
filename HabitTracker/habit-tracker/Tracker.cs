@@ -55,7 +55,6 @@ namespace habit_tracker
 
         private static void Update()
         {
-            //Console.Clear();
             GetAllRecords();
 
             var recordId = GetNumberInput("\n\nPlease type the Id of the record you want to update or type 0 to retun to main menu. \n\n");
@@ -87,7 +86,6 @@ namespace habit_tracker
 
         private static void Delete()
         {
-            //Console.Clear();
             GetAllRecords();
 
             var recordId = GetNumberInput("\n\nPlease type the Id of the record you want to delete or type 0 to return to main menu. \n\n");
@@ -112,7 +110,6 @@ namespace habit_tracker
 
         private static void GetAllRecords()
         {
-            //Console.Clear();
             using var connection = new SqliteConnection(connectionString);
             connection.Open();
             var tableCmd = connection.CreateCommand();
