@@ -20,10 +20,30 @@ public class Program
         )";
 
         tableCmd.ExecuteNonQuery();
+        var checkCmd = connection.CreateCommand();
+        checkCmd.CommandText = "SELECT COUNT(*) FROM habits";
+        long rowCount = (long)checkCmd.ExecuteScalar();
+
+        if (rowCount == 0)
+            SeedDatabase();
 
         connection.Close();
 
         Tracker.GetUserInput();
+    }
+    public static void SeedDatabase()
+    {
+        using SqliteConnection connection = new(connectionString);
+        connection.Open();
+
+        var command = connection.CreateCommand();
+        command.CommandText = @"
+        INSERT INTO habits (name, date, quantity, unit) VALUES ('running', '04-04-26', 1, 'hours');
+        INSERT INTO habits (name, date, quantity, unit) VALUES ('meditation', '04-04-26', 20, 'minutes');
+        INSERT INTO habits (name, date, quantity, unit) VALUES ('coding', '04-04-26', 7, 'hours');
+        INSERT INTO habits (name, date, quantity, unit) VALUES ('reading', '04-04-26', 40, 'minutes');
+        ";
+        command.ExecuteNonQuery();
     }
     
 }
